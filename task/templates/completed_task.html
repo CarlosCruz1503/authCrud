@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% include "partials/nav-task.html" %}
+<h1 class="text-center">Tareas Pendientes</h1>
+<div class="row">
+    <div class="col-12 col-md-3"></div>
+    <div class="col-12 col-md-6 task-view">
+        {% for task in tasks%}
+        <div class="card task-view" style="width: auto;">
+            <ul class="list-group list-group-flush">
+                {% if task.important %}
+                <li class="list-group-item">
+                    <h3 class="text-success text-center">{{task.name}}</h3></li>
+                {% else %}
+                <li class="list-group-item text-center"><h3>{{task.name}}</h3></li>
+                {% endif %}
+                <li class="list-group-item">
+                    <p>Descripcion: {{task.description}}</p>
+                    <p>Tarea completa el dia: {{task.date_complete|date:"M d"}}</p>
+                </li>
+                <li class="list-group-item">
+                    <p>
+                        Categoria: {{task.category}}
+                        <a href={% url "delete_task" task.id %} class="btn btn-danger"> Eliminar</a>
+                    </p> 
+                </li>
+            </ul>
+        </div>
+
+        {% endfor%}
+    </div>
+    <div class="col-12 col-md-3"></div>
+</div>
+
+{% endblock %}

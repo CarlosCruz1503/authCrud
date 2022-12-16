@@ -1,0 +1,112 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% include "partials/nav-contact.html" %}
+{% include "partials/nav-contact2.html" %}
+{% include "partials/nav-contact3.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <br>
+            <div class="aviso">El contacto selecionado aparecera en la parte
+                inferior de la pantalla</div>
+            <br>
+            <div class="list-group" id="myList" role="tablist">
+                <a class="list-group-item list-group-item-action active"
+                    data-toggle="list" href="#home" role="tab">Home</a>
+                {% for contact in contacts %}
+                {% if contact.favorite %}
+                <a class="list-group-item list-group-item-action"
+                    style="background-color:#A2AEBB" data-toggle="list"
+                    href="#{{contact.id}}" role="tab">{{contact.name}}</a>
+                {% else %}
+                <a class="list-group-item list-group-item-action"
+                    data-toggle="list" href="#{{contact.id}}"
+                    role="tab">{{contact.name}}</a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active " id="home" role="tabpanel"><h4 class="text-center">Aqui
+                        tienes una lista tus contactos, pincha en el
+                        nombre de tu contacto y obten mas info</h4></div>
+                <h2 class="text-center">{{error}}</h2>
+                {% for contact in contacts %}
+                
+                <div class="tab-pane" id="{{contact.id}}" role="tabpanel">
+                    <div class="col-12 ">
+                        {% if contact.favorite %}
+                        <div class=" col-12 contact-col"
+                            style="background-color:black; color:white; border:
+                            2px solid white;
+                            border-radius: 1rem;">
+                            {% else %}
+                            <div class=" col-12 contact-col">
+                                {% endif %}
+                                <br>
+                                <h1 class="text-name text-center"><i class="bi
+                                        bi-person"></i>{{contact.name}}</h1>
+                                <hr>
+                                <h3 class="text-center">Info del contacto</h3>
+                                <div class="icon">
+                                    <i class="bi bi-telephone"></i>
+                                    <div class="data">
+                                        <p class="datadata">{{contact.phone}}</p>
+                                        <p class="label">Mobile</p>
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <i class="bi bi-envelope"></i>
+                                    <div class="data">
+                                        <p class="datadata">{{contact.email}}</p>
+                                        <p class="label">Email</p>
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <i class="bi bi-house-door"></i>
+                                    <div class="data">
+                                        <p class="datadata">{{contact.address}}</p>
+                                        <p class="label">Direccion</p>
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <i class="bi bi-people"></i>
+                                    <div class="data">
+                                        {% if contact.group.all.0 == null %}
+                                        <p class="datadata"> "No tiene grupo"
+                                        </p>
+                                        {% endif %}
+                                        {% for group in contact.group.all %}
+                                        <p class="datadata">{{group.name}},</p>
+                                        {% endfor %}
+                                        <p class="label">Grupo</p>
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <i class="bi bi-heart"></i>
+                                    <div class="data">
+                                        <p class="datadata">{{contact.favorite}}</p>
+                                        <p class="label">Favorito</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="buttons">
+                                    <a href={% url 'edit_contact' contact.id %} class="btn btn-dark"
+                                    style="color:white; margin-bottom:1rem">Editar</a>
+                                    <a href={% url 'delete_contact' contact.id %} class="btn btn-danger"
+                                    style="color:white; margin-bottom:1rem">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}F

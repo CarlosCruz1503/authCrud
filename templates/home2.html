@@ -1,0 +1,40 @@
+{% extends "layout/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="text-center mt-5">¿Quieres ver tus contactos ó tus tareas?</h1>
+        <div class="col-12 col-md-6 mt-4">
+            <div class="card home">
+                <a href={% url "contacts" %}>
+                    <div class="card-body">
+                        <h1 class="card-title text-center">Contactos</h1>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">Una
+                            guia de contactos</h6>
+                        <h4 class="card-text text-center">Podras adminstrar una
+                            guia telefonica tal cual como lo haces en tu
+                            telefono movil, puedes crear, eliminar, editar y ver
+                            tus contactos, ademas puedes ver tus contactos
+                            filtrandolos por grupos y por su nombre inicial</h4>
+                    </div>
+                </a>
+
+            </div></div>
+        <div class="col-12 col-md-6 mt-4">
+            <div class="card home">
+                <a href={% url "tasks" %}>
+                    <div class="card-body">
+                        <h1 class="card-title text-center">Tareas</h1>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">Un
+                            sistema para gestionar tus tareas</h6>
+                        <h4 class="card-text text-center">Podras adminstrar tus
+                            tareas para organizar tu dia de mejor forma, puedes
+                            crear, eliminar, editar y ver tus tareas, ademas
+                            puedes ver una lista de las tareas que vayas
+                            completando</h4>
+                    </div>
+                </a>
+
+            </div></div>
+    </div>
+</div>
+{% endblock content %}

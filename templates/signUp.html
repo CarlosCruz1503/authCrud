@@ -1,0 +1,38 @@
+
+{% extends "layout/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-3"></div>
+        <div class="col-12 col-md-6">
+            <div class="forms">
+                {% if user.is_authenticated %}
+                <h1> Ya tienes una cuenta, si deseas iniciar sesion en otra cuenta sal de la cuenta actual</h1>
+                {% else %}
+                <div class="card">
+                    <form action={% url "signUp" %} method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <p class="text-danger text-center"> {{error}} </p>  
+                            <h5 class="card-title">Crea tu usuario</h5>
+                            <label for="username" class="form-label">Nombre de
+                                usuario</label>
+                            <input type="text" class="form-control"
+                                placeholder="Username" name="username">
+                            <label for="password1" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control"
+                                placeholder="Username" name="password1">
+                            <label for="password2" class="form-label">Confirma la contraseña</label>
+                            <input type="password" class="form-control"
+                                placeholder="Username" name="password2">
+                            <input href="#" class="btn btn-primary" id="submit" type="submit" value="crear">
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-md-3"></div>
+    </div>
+</div>
+{% endblock content %}

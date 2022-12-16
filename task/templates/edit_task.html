@@ -1,0 +1,27 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% include "partials/nav-task.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-2"></div>
+        <div class="col-12 col-md-8">
+            <div class="forms create-task">
+                <div class="card">
+                    {{error}}
+                    <form action={% url "edit_task" task_id %} method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <p class="text-danger text-center"> {{error}} </p>  
+                            <h5 class="card-title">Edita tu Tarea</h5>
+                            {{form.as_p}}
+                            <input href="#" class="btn btn-primary" id="submit" type="submit" value="crear">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-2"></div>
+    </div>
+</div>
+{% endblock %}

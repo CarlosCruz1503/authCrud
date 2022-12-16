@@ -1,0 +1,28 @@
+<header>
+    <div class="row">
+        <nav class="nav">
+            <div class="col-12 col-md-6">
+                <ul class="log">
+                    {% if user.is_authenticated %}
+                    <li><a href={% url 'contacts' %}>Contactos</a></li>
+                    <li><a href={% url 'tasks' %}>Tareas</a></li>
+                    {% else %}
+                    <li id="inicia">Inicia sesion para ver tus tareas y contactos</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-12 col-md-6 mb-2">
+                <ul class="sign">
+                    
+                    {% if user.is_authenticated %}
+                    <li><a href={% url 'logout' %}>LogOut</a></li>
+                    {% else %}
+                    <li><a href={% url 'login' %}>Login</a></li>
+                    <li><a href={% url 'signUp' %}>SingUp</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+</header>
