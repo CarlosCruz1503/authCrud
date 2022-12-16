@@ -15,9 +15,8 @@ class Task (models.Model):
     important = models.BooleanField(default=False)
     description = models.TextField(blank=True)
     date_complete = models.DateTimeField(null=True, blank=True)
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, blank=True, null=True, default="Sin categoria")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return str(self.name + " usuario : " + str(self.user))

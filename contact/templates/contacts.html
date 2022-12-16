@@ -74,13 +74,7 @@
                                 <div class="icon">
                                     <i class="bi bi-people"></i>
                                     <div class="data">
-                                        {% if contact.group.all.0 == null %}
-                                        <p class="datadata"> "No tiene grupo"
-                                        </p>
-                                        {% endif %}
-                                        {% for group in contact.group.all %}
-                                        <p class="datadata">{{group.name}},</p>
-                                        {% endfor %}
+                                        <p class="datadata">{{contact.group.name}}</p>
                                         <p class="label">Grupo</p>
                                     </div>
                                 </div>

@@ -60,14 +60,16 @@ def edit_contact(request,contact_id):
 @login_required
 def create_contact(request):
     if request.method == "GET":
-        form = ContactForm()
-        return render(request, "create_contact.html", {'contacts': contacts,"form":form})
+        return render(request, "create_contact.html", {"form": ContactForm})
     else:
-        contact_a = ContactForm(request.POST)
-        contact_actu = contact_a.save(commit=False)
-        contact_actu.user = request.user
-        contact_actu.save()
-        return redirect("contacts")
+        try:
+            contact = ContactForm(request.POST)
+            new_contact = contact.save(commit=False)
+            new_contact.user = request.user
+            new_contact.save()
+            return redirect("contacts")
+        except:
+            return render(request, "create_contact.html", {"form": ContactForm, "error": "Ingresa datos validos"})
     
 @login_required
 def delete_contact(request,contact_id):
