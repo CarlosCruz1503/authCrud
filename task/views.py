@@ -104,11 +104,15 @@ def signin(request):
             return render(request, "login.html", {"error": "El usuario o la contraseña son incorrectos"})
 
 def home(request):
-    user = User.objects.get(username='admin123')
-    if (user == "admin123"):
-        user = User.objects.create_superuser('admin123', 'admin@example.com', 'admin123')
-        user.save()
-    return render(request,"home.html",{})
+    try:
+        user = User.objects.get(username='admin123')
+        if (user == "admin123"):
+            user = User.objects.create_superuser('admin123', 'admin@example.com', 'admin123')
+            user.save()
+            return render(request,"home.html",{})
+    except:
+        return render(request,"home.html",{})
+
 
 @login_required
 def signout(request):
