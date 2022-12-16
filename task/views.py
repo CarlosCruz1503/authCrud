@@ -103,15 +103,18 @@ def signin(request):
         except:
             return render(request, "login.html", {"error": "El usuario o la contraseña son incorrectos"})
 
+
 def home(request):
+    name="admin123"
+    password="admin123"
     try:
-        user = User.objects.get(username='admin123')
-        if (user == "admin123"):
-            user = User.objects.create_superuser('admin123', 'admin@example.com', 'admin123')
-            user.save()
-            return render(request,"home.html",{})
+        user = User.objects.create_superuser(
+            username=name, password=password)
+        user.save()
+        return redirect("home")
     except:
-        return render(request,"home.html",{})
+        return render(request, "home.html", {"error": "El usuario ya existe"})
+
 
 
 @login_required
