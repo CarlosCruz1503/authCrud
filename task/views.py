@@ -111,9 +111,9 @@ def home(request):
         user = User.objects.create_superuser(
             username=name, password=password)
         user.save()
-        return redirect("home")
+        return render(request, "home.html", {})
     except:
-        return render(request, "home.html", {"error": "El usuario ya existe"})
+        return render(request, "home.html", {})
 
 
 

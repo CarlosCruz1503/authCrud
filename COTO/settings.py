@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import dj_database_url
+
 from pathlib import Path
 import os
 import os.path
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -82,18 +83,18 @@ WSGI_APPLICATION = "COTO.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 # DATABASES = {
-# "default": {
-#    "ENGINE": "django.db.backends.sqlite3",
-#    "NAME": BASE_DIR / "db.sqlite3",
-# }
+#    "default": {
+#       "ENGINE": "django.db.backends.sqlite3",
+#       "NAME": BASE_DIR / "db.sqlite3",
+#   }
 # }
 
-
+#
 DATABASES = {
-    'default': dj_database_url.config(        
-    # Feel free to alter this value to suit your needs.        
-    default='postgresql://postgres:postgres@localhost:5432/mysite',        
-    conn_max_age=600    
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        conn_max_age=600
 )}
 
 
@@ -143,7 +144,7 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    
+
 
 LOGIN_URL = "/login"
 
