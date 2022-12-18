@@ -5,6 +5,7 @@
     padding: 0;
     font-family: 'Josefin Sans', sans-serif;
     overflow-x:hidden;
+
 }
 
 .nav {
@@ -108,7 +109,10 @@ p{
     color:white;
 }
 
-
+.task-important{
+    background-color: rgb(162, 255, 177);
+    border: rgb(162, 255, 177) 3px solid;
+}
 .nav-task {
     display: flex;
     flex-direction: row;
@@ -166,7 +170,18 @@ p{
 }
 .buttons .btn{
     margin:0rem 0.5rem;
+    
     width: 10rem;
+}
+.btn-tasks .btn{
+    margin:0rem 0.5rem;
+    font-size: 1.2rem;
+}
+.cat{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
 }
 .aviso{
     font-size: 0.85rem;
@@ -179,7 +194,7 @@ p{
     color: black;
     list-style: none;
     font-size: 1rem;
-    gap: 0.2rem;
+    gap: 0.3rem;
     background-color: rgb(255, 255, 255);
     margin-top: 1rem;
 }
@@ -190,6 +205,9 @@ p{
 .nav-contact a:-webkit-any-link {
     color: black;
     cursor: pointer;
+}
+.nav-group{
+    gap: 1.5rem;
 }
 
 .create-task input{
@@ -234,5 +252,14 @@ form .card-body input[type=submit]{
         padding: 0;
         gap: 1.5rem;
         font-size: 1.1rem;
+    }
+    .cat{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:1rem;
+    }
+    .bi{
+        font-size: 1.7rem;
     }
 }

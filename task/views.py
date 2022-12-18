@@ -13,15 +13,17 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def tasks(request):
     tasks = Task.objects.filter(
-        user=request.user, date_complete__isnull=True).order_by("-important")
-    return render(request, "tasks.html", {"tasks": tasks})
+        user=request.user, date_complete__isnull=True).order_by("date_for_complete")
+    categories = Category.objects.all()
+    return render(request, "tasks.html", {"tasks": tasks,"categories": categories})
 
 
 @login_required
 def completed_task(request):
     tasks = Task.objects.filter(
-        user=request.user, date_complete__isnull=False).order_by("-important")
-    return render(request, "completed_task.html", {"tasks": tasks})
+        user=request.user, date_complete__isnull=False).order_by("date_for_complete")
+    categories = Category.objects.all()
+    return render(request, "completed_task.html", {"tasks": tasks,"categories": categories})
 
 
 @login_required

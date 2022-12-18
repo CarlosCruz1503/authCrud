@@ -6,32 +6,81 @@
     <div class="col-12 col-md-3"></div>
     <div class="col-12 col-md-6 task-view">
         {% for task in tasks%}
-        <div class="card task-view" style="width: auto;">
-            <ul class="list-group list-group-flush">
-                {% if task.important %}
-                <li class="list-group-item">
-                    <h2 class="text-success text-center">{{task.name}}</h2></li>
-                {% else %}
-                <li class="list-group-item text-center"><h3>{{task.name}}</h3></li>
+        {% if task.important %}
+        <div class="card task-view task-important" style="width: auto;">
+            {% else %}
+            <div class="card task-view " style="width: auto;">
                 {% endif %}
-                <li class="list-group-item">
-                    <p>Descripcion: {{task.description}}</p>
-                    <p>Fecha para completar: {{task.date_for_complete|date:"M d"}}</p>
-                </li>
-                <li class="list-group-item">
-                    <p>
-                        Categoria: {{task.category}}
-                        <a href={% url "complete_task" task.id %} class="btn btn-success">Completar</a>
-                        <a href={% url "edit_task" task.id %} class="btn btn-primary">Editar</a>
-                        <a href={% url "delete_task" task.id %} class="btn btn-danger"> Eliminar</a>
-                    </p> 
-                </li>
-            </ul>
+                <ul class="list-group list-group-flush">
+                    {% if task.important %}
+                    <li class="list-group-item task-important">
+                        <h2 class="text-success text-center ">{{task.name}}</h2></li>
+                    {% else %}
+                    <li class="list-group-item text-center"><h3>{{task.name}}</h3></li>
+                    {% endif %}
+                    <li class="list-group-item">
+                        {% if task.description != "" %}
+                        <p>Descripcion: {{task.description}}</p>
+                        {% endif %}
+                        <p>Fecha para completar:
+                            {{task.date_for_complete|date:"M d"}}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                               
+                                    <div class="col-12 col-xxl-6">
+                                       
+                                        <div class="cat">
+                                            {% if categories.1 == task.category%}
+                                            
+                                                <h2 class=""> {{task.category}}
+                                                </h2>
+                                                <i class="bi bi-eyeglasses"></i>
+                                            
+
+                                            {% elif categories.2 == task.category %}
+                                            <h2 class=""> {{task.category}}
+                                            </h2>
+                                            <i class="bi bi-controller"></i>
+                                            {% elif categories.3 == task.category %}
+                                            <h2 class=""> {{task.category}}
+                                            </h2>
+                                            <i class="bi bi-hourglass-bottom"></i>
+                                            {% elif categories.4 == task.category %}
+                                            <h2 class=""> {{task.category}}
+                                            </h2>
+                                            <i class="bi bi-list-check"></i>
+                                            {% elif categories.0 == task.category %}
+                                            <h2 class=""> {{task.category}}
+                                            </h2>
+                                            <i class="bi bi-briefcase-fill"></i>
+                                            {% endif %}
+                                            
+                                        </div>
+
+                                    </div>
+                                        <div class="col-12 col-xxl-6">
+                                            <div class="buttons btn-tasks">
+                                            <a href={% url "complete_task" task.id %}
+                                                class="btn btn-success">Completar</a>
+                                            <a href={% url "edit_task" task.id %} class="btn
+                                                btn-primary">Editar</a>
+                                            <a href={% url "delete_task" task.id %}
+                                                class="btn btn-danger"> Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                        </li>
+                    </ul>
+                </div>
+
+                {% endfor%}
+            </div>
+            <div class="col-12 col-md-3"></div>
         </div>
 
-        {% endfor%}
-    </div>
-    <div class="col-12 col-md-3"></div>
-</div>
-
-{% endblock %}
+        {% endblock %}
